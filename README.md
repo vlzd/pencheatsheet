@@ -81,6 +81,9 @@ nmap --script=http-robot.txt 192.168xx -vvv
   
 -burp
 
+REVERSE SHELL:
+https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+
 
 
 
