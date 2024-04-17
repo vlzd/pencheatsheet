@@ -80,8 +80,12 @@ nmap --script=http-robot.txt 192.168xx -vvv
   webapp scanner
   
 -burp
+INJECTIONS WEB
+
+  XSS : https://github.com/mandatoryprogrammer/xsshunter-express
 
 REVERSE SHELL:
+
 https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
 
 
