@@ -115,6 +115,23 @@
       
     -burp
 
+      Proxy pour intercepter (ma requete, mo,n formulailre etc)
+      
+      Intruder : mode sniper = attaquer un seul champ
+                 mode cluster bomb = attaquer plusieurs champs
+                 Battering ram = surcharger la ram
+                 mode PitchFork = noyer le cluster avec plusieurs payload
+
+                 Add $ (variable) = à poser sur chaque variable que l'on veut bruterforcer, puis dans payloads cela       
+                 deviendra ma variable
+                 je choisis ensuite mon payload (payload 1 correspond à ma première variable)
+                 Dans mon payload settings je vais choisir ma wordlist
+                 Je coche ou decoche l'url encodage selon si mes champs de depart sont encodés ou non
+                 Je fais pareil pour ma deuxieme variable (mdp par exemple)
+                 Je desactive le proxy
+                 et je lance mon attaque
+                 
+
     
 #[INJECTIONS WEB]
     
