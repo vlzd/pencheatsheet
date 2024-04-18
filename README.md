@@ -53,7 +53,7 @@
 
 
 
-RECONNAISSANCE ACTICE / ENUMERATION
+##[RECONNAISSANCE ACTICE / ENUMERATION]
 
     -sudo netdiscover -r 192.168. -i eth0
     (eliminer les mac vmware workstation)
@@ -69,7 +69,7 @@ RECONNAISSANCE ACTICE / ENUMERATION
     
     nmap --script=http-robot.txt 192.168xx -vvv
         location des scripts NSE (nmap script engine) locate *.nse
-CRAWLING    
+##[CRAWLING]    
     -nikto -host http://192.168..
       recherche de repertoires
       reconnaisance de vulnerabilites
@@ -82,13 +82,13 @@ CRAWLING
       webapp scanner
       
     -burp
-    INJECTIONS WEB
+#[INJECTIONS WEB]
     
       XSS : https://github.com/mandatoryprogrammer/xsshunter-express
 
-REVERSE SHELL:
+#[REVERSE SHELL]
 
-https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+    https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
 
 
 
