@@ -1,5 +1,5 @@
 <p align="center">
-  Pentest-Cheat-Sheets<br>
+  Pentest-Cheat-Sheet<br>
 </p>
 
 ##[RECONNAISSANCE PASSIVE / OSINT:]
