@@ -110,8 +110,12 @@
     -Zaproxy (https://github.com/zaproxy/zaproxy)
       webapp scanner
       taper zaproxy puis y pour installer ou apt install zaproxy
+      ajouter ajax spider
+      ajouter fuzz
       
     -burp
+
+    
 #[INJECTIONS WEB]
     
       XSS : https://github.com/mandatoryprogrammer/xsshunter-express
