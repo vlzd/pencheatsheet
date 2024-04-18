@@ -140,8 +140,9 @@
 #[REVERSE SHELL]
 
     https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+    https://github.com/flozz/p0wny-shell
     
-#[REVERSE SHELL]
+#[WORDLISTS]
 
     apt -y install seclists (https://github.com/danielmiessler/SecLists)
 
