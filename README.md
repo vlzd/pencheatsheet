@@ -92,7 +92,9 @@
         location des scripts NSE (nmap script engine) locate *.nse
     ls /usr/share/nmap/scripts/ | grep ftp 
         pour trouver un script NSE dans l'emplacement des scripts
-
+        
+    nmap -sV -script http-sql-injection 192.168.x.x
+        Scan des injections sql
         
 ##[CRAWLING]    
 
@@ -115,6 +117,10 @@
 #[REVERSE SHELL]
 
     https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+    
+#[REVERSE SHELL]
+
+    apt -y install seclists (https://github.com/danielmiessler/SecLists)
 
 
 
