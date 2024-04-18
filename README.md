@@ -136,8 +136,9 @@
 #[INJECTIONS WEB]
     
       XSS : https://github.com/mandatoryprogrammer/xsshunter-express
+      Beef autopown (https://github.com/beefproject/beef/wiki/Autorun-Rule-Engine)
 
-#[REVERSE SHELL]
+#[SHELL / REVERSE SHELL]
 
     https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
     https://github.com/flozz/p0wny-shell
