@@ -1,6 +1,6 @@
 # pencheatsheet
 
-RECONNAISSANCE PASSIVE / OSINT:
+[RECONNAISSANCE PASSIVE / OSINT:]
 
 dnsdumpster https://dnsdumpster.com/
 
