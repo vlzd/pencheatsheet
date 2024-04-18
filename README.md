@@ -1,50 +1,50 @@
 # pencheatsheet
 
-[RECONNAISSANCE PASSIVE / OSINT:]
+##[RECONNAISSANCE PASSIVE / OSINT:]
 
-dnsdumpster https://dnsdumpster.com/
-
-spiderfoot (https://github.com/smicallef/spiderfoot)
-
-Qualys SSL LABS (https://www.ssllabs.com/)
-
-Wappalyzer plugin navigateur (caching = banner grabbing)
-
-Flagfox plugin nav
-
-Hunter.io plugin nav
-
-Omega switch plugin nav
-
-Port Checker plugin
-
-webdevelopper plugin
-
-hackbar plugin pour F12
-
-hacktools plugin ( a recuperer sur github)
-
-copyfish OCR
-
-download all images
-
-ghostery tracker Ad BLOCKER
-
-GHUNT !!!!!
-
-hack-tools
-
-LeakIX
-
-Netlas.IO
-
-LinkGopher
-
-Search by image
-
-aperisolv (https://www.aperisolve.com/)
-
-https://www.lemondeinformatique.fr/actualites/lire-8-outils-osint-pour-le-cyber-renseignement-80484.html
+      dnsdumpster https://dnsdumpster.com/
+      
+      spiderfoot (https://github.com/smicallef/spiderfoot)
+      
+      Qualys SSL LABS (https://www.ssllabs.com/)
+      
+      Wappalyzer plugin navigateur (caching = banner grabbing)
+      
+      Flagfox plugin nav
+      
+      Hunter.io plugin nav
+      
+      Omega switch plugin nav
+      
+      Port Checker plugin
+      
+      webdevelopper plugin
+      
+      hackbar plugin pour F12
+      
+      hacktools plugin ( a recuperer sur github)
+      
+      copyfish OCR
+      
+      download all images
+      
+      ghostery tracker Ad BLOCKER
+      
+      GHUNT !!!!!
+      
+      hack-tools
+      
+      LeakIX
+      
+      Netlas.IO
+      
+      LinkGopher
+      
+      Search by image
+      
+      aperisolv (https://www.aperisolve.com/)
+      
+      https://www.lemondeinformatique.fr/actualites/lire-8-outils-osint-pour-le-cyber-renseignement-80484.html
 
 pentestertools
 
