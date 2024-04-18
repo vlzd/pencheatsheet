@@ -135,8 +135,12 @@
     
 #[INJECTIONS WEB]
     
-      XSS : https://github.com/mandatoryprogrammer/xsshunter-express
-      Beef autopown (https://github.com/beefproject/beef/wiki/Autorun-Rule-Engine)
+      Inection XSS : 
+        xsshunter https://github.com/mandatoryprogrammer/xsshunter-express
+        Beef autopown (https://github.com/beefproject/beef/wiki/Autorun-Rule-Engine)
+      Injections SQL
+        SQLMAP
+       
 
 #[SHELL / REVERSE SHELL]
 
