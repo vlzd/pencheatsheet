@@ -64,7 +64,7 @@
         Windows – 65-127
         Cisco/Solaris/AIX – 128-265
         
-    nmap -n -vvv- Pn -O -sV 192.x.x.x -oX fichier.xml
+    nmap -n -vvv -Pn -O -sV 192.x.x.x -oX fichier.xml
       -n = NO DNS resolution 
       -vvv = full verbose
       -Pn = port scan only, no ping
@@ -100,6 +100,7 @@
 
     -gobuster
       premiere indexation de repertoires
+      cheatsheet = https://linuxcscom.wordpress.com/gobuster/
       
     -dirb http:// 
       juste pour indexer les repertoires
