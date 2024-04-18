@@ -4,7 +4,7 @@
 
 ##[RECONNAISSANCE PASSIVE / OSINT:]
 
-      dnsdumpster https://dnsdumpster.com/
+      dnsdumpster (#https://dnsdumpster.com/)
       
       spiderfoot (https://github.com/smicallef/spiderfoot)
       
