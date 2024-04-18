@@ -71,9 +71,22 @@
       -O = OS scan fingerprinting
       -sV = Banner Grabbing
       -oX = export de fichier en xml
+
+    xsltproc fichier.xml -o fichier.html
+      transforme l'export xml en html
       
     nmap -sV -O 192.168xx -vvv
       banner grabbing + reconnaissance d'OS si besoin
+
+    IDS / Firewall evasion
+        nmap -f 
+          fragmente les paquets
+          
+        sudo nmap --script path-mtu 192.168.x.x (donne le path-mtu)
+        nmap ....... -mtu (32,64...)
+        
+        nmap -data-length 200 192.168.x.x
+            change la taille des paquets
     
     nmap --script=http-robot.txt 192.168xx -vvv
         location des scripts NSE (nmap script engine) locate *.nse
