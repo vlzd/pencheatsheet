@@ -61,23 +61,36 @@
     -ping de l'adresse trouvée pour vérifier si ping up 
       vérifier le TTL pour trouver si linux ou windows:
         Unix / Linux – 0-64
-        Windows – 64-128
+        Windows – 65-127
         Cisco/Solaris/AIX – 128-265
-    
+        
+    nmap -n -vvv- Pn -O -sV 192.x.x.x -oX fichier.xml
+      -n = NO DNS resolution 
+      -vvv = full verbose
+      -Pn = port scan only, no ping
+      -O = OS scan fingerprinting
+      -sV = Banner Grabbing
+      -oX = export de fichier en xml
+      
     nmap -sV -O 192.168xx -vvv
       banner grabbing + reconnaissance d'OS si besoin
     
     nmap --script=http-robot.txt 192.168xx -vvv
         location des scripts NSE (nmap script engine) locate *.nse
+    ls /usr/share/nmap/scripts/ | grep ftp 
+        pour trouver un script NSE dans l'emplacement des scripts
+
+        
 ##[CRAWLING]    
+
+    -dirb http:// 
+      juste pour indexer les repertoires
+      
     -nikto -host http://192.168..
       recherche de repertoires
       reconnaisance de vulnerabilites
       rechercher dans l'OSVDB
-    
-    -dirb http:// 
-      juste pour indexer les repertoires
-    
+      
     -Zaproxy
       webapp scanner
       
