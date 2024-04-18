@@ -140,6 +140,7 @@
         Beef autopown (https://github.com/beefproject/beef/wiki/Autorun-Rule-Engine)
       Injections SQL
         SQLMAP
+      Cheatsheet https://portswigger.net/web-security/sql-injection/cheat-sheet
        
 
 #[SHELL / REVERSE SHELL]
