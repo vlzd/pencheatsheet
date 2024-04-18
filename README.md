@@ -105,9 +105,11 @@
       recherche de repertoires
       reconnaisance de vulnerabilites
       rechercher dans l'OSVDB
+      (https://cdn.comparitech.com/wp-content/uploads/2019/07/NIkto-Cheat-Sheet.pdf)
       
-    -Zaproxy
+    -Zaproxy (https://github.com/zaproxy/zaproxy)
       webapp scanner
+      taper zaproxy puis y pour installer ou apt install zaproxy
       
     -burp
 #[INJECTIONS WEB]
@@ -121,6 +123,16 @@
 #[REVERSE SHELL]
 
     apt -y install seclists (https://github.com/danielmiessler/SecLists)
+
+#[COMMANDES UTILES]
+
+    x-www-browser index.html
+      Pour ouvrir un fichier html en ligne de commande
+
+#[SITES UTILES]
+    
+    Wordpress sécurisation:
+    wpmarmite (https://wpmarmite.com/)
 
 
 
