@@ -213,7 +213,13 @@
     stabiliser shell python :
       python -c 'import pty;pty.spawn("/bin/bash");'
       python -c 'import pty; pty.spawn("/bin/bash")'
-      export TERM=xterm
+      ctrl + z pour mettre le shell en background
+      stty raw -echo  (desactive l'echo)
+      fg  (pour remettre le shell en foreground)            
+      ENTER
+      ENTER
+      export TERM=xterm     (pour defininir la variable du shell sur xterm)
+      stty cols 132 rows 34  (pour definir le nombre de ligne et colonnes du terminal)
 
       
 https://github.com/flozz/p0wny-shell
