@@ -4,6 +4,8 @@
 
 ##[RECONNAISSANCE PASSIVE / OSINT:]
 
+      https://github.com/cipher387/osint_stuff_tool_collection
+
       dnsdumpster (#https://dnsdumpster.com/)
       
       spiderfoot (https://github.com/smicallef/spiderfoot)
