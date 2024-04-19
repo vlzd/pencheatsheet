@@ -188,6 +188,7 @@
           -threads 5 nombre de threads
           --dump pour dumper le contenu de la table
 
+        https://github.com/sqlmapproject/sqlmap/wiki/Usage (MEILLEUR DES CHEATSHEET)
         https://book.hacktricks.xyz/pentesting-web/sql-injection/sqlmap CHEATSHEET EXPLICATIVE !!!
         Cheatsheet https://portswigger.net/web-security/sql-injection/cheat-sheet
         https://book.hacktricks.xyz/pentesting-web/sql-injection
