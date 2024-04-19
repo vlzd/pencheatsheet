@@ -191,6 +191,14 @@ https://github.com/flozz/p0wny-shell
     MD5 Decrypt
       https://www.dcode.fr/md5-hash
 
+    Générateur d'incident cyber 
+      https://github.com/mrwadams/attackgen
+
+    Honeypot ALLINONE teaspot
+      (https://github.com/github-rashelbach/-T-Pot-Honeypot) = honeypot all in one
+
+    Github rapport pentest
+      https://github.com/noraj/OSCP-Exam-Report-Template-Markdown
 
 
 
