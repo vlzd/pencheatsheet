@@ -85,6 +85,14 @@
       -sV = Banner Grabbing
       -oX = export de fichier en xml
 
+      nmap -sC -sV -p- -T4 --min-rate=9326 -vv
+        sC : run particular scripts on the target and check what all can happen there
+        sV : check for the versions
+        -p- : check all the ports
+        -T4 : it is to speed up things(max is T5)
+        — min-rate=9326 : nmap will send the packets at the rate of 9326 per second, this 9326 is just a random number that I got from my Twitter friend
+        -vv this stand for very verbose(refers to details) output
+
     xsltproc fichier.xml -o fichier.html
       transforme l'export xml en html
       
