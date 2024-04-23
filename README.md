@@ -454,7 +454,17 @@
     Se connecter à un partage samba :
           smbclient //10.10.186.19/anonymous
 
-#[CRACKING MOT DE PASSE]
+#[BUFFER OVERFLOW]
+
+    https://github.com/Tib3rius/Pentest-Cheatsheets/blob/master/exploits/buffer-overflows.rst
+
+    Immunity debugger :
+        Plugin MONA:
+            https://github.com/corelan/mona
+
+        
+
+#[METERPRETER]
 
     Cracket hash de mot de passe windows
             john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
@@ -477,6 +487,9 @@
 
     x-www-browser index.html
       Pour ouvrir un fichier html en ligne de commande
+
+    xfreerdp /u:admin /p:password /cert:ignore /v:MACHINE_IP /workarea
+      Connection RDP via linux
 
 #[SITES UTILES]
     
