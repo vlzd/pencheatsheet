@@ -468,6 +468,19 @@
 
     Cracket hash de mot de passe windows
             john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+
+
+#[OBFUSCATION]
+
+      PYARMOR
+            https://github.com/dashingsoft/pyarmor
+            pyarmor gen "nom_du_script"
+            Le script obfusqué se place dans le dossier /DIST du répertoire ou est placé le script
+            
+#[REVERSE ENGINEERING]
+
+      GHIDRA
+            https://goopensource.fr/installation-et-utilisation-de-ghidra-reverse-engineering/
             
     
             
