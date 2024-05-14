@@ -189,6 +189,7 @@
       Inection XSS : 
         xsshunter https://github.com/mandatoryprogrammer/xsshunter-express
         Beef autopown (https://github.com/beefproject/beef/wiki/Autorun-Rule-Engine)
+        CHEATSHEET https://github.com/ScriptIdiot/XSS-wordlist/blob/master/XSS-WAF.txt
         
       Injections SQL
         1' or 1=1; --  (pour obtenir tout les records dans la table)
