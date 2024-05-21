@@ -459,9 +459,6 @@
           https://www.kali.org/tools/bloodhound/
           https://github.com/dirkjanm/BloodHound.py/tree/master
 
-
-#[EXPLOITATION WINDOWS]
-
     GOLDEN TICKET Mimikatz:
       LSADUMP::DCSYNC (pour récuperer hash et SID de krbtgt:
             lsadump::dcsync /user:krbtgt
@@ -472,8 +469,70 @@
       Ouverture du CMD en utilisant le GOLDEN TICKET depuis MIMIKATZ:
             MISC::CMD
 
-    
+      runas.exe /netonly /user:<domain>\<username> cmd.exe
+            Injecter les credentials dans la mémoire
 
+      En powershell pour set up le DNS et lire le SYSVOL
+        $dnsip = "<DC IP>"
+        $index = Get-NetAdapter -Name 'Ethernet' | Select-Object -ExpandProperty 'ifIndex'
+        Set-DnsClientServerAddress -InterfaceIndex $index -ServerAddresses $dnsip
+
+      Enumerer SYSVOL  
+        dir \\za.tryhackme.com\SYSVOL\
+
+     Difference dir \\za.tryhackme.com\SYSVOL and dir \\<DC IP>\SYSVOL and why the big fuss about DNS?
+        dir \\za.tryhackme.com\SYSVOL == authenth KERBEROS
+        dir \\<DC IP>\SYSVOL == AUHTENT NTLM
+
+    Enumeration AD via MMC
+      Connexion MMC RTSAT pour accèder aux GPO
+          Press Start
+          Search "Apps & Features" and press enter
+          Click Manage Optional Features
+          Click Add a feature
+          Search for "RSAT"
+          Select "RSAT: Active Directory Domain Services and Lightweight Directory Tools" and click Install
+  
+          Dans MMC 
+          Click File -> Add/Remove Snap-in
+          Select and Add all three Active Directory Snap-ins
+          Click through any errors and warnings
+          Right-click on Active Directory Domains and Trusts and select Change Forest
+          Enter za.tryhackme.com as the Root domain and Click OK
+          Right-click on Active Directory Sites and Services and select Change Forest
+          Enter za.tryhackme.com as the Root domain and Click OK
+          Right-click on Active Directory Users and Computers and select Change Domain
+          Enter za.tryhackme.com as the Domain and Click OK
+          Right-click on Active Directory Users and Computers in the left-hand pane
+          Click on View -> Advanced Features
+
+    Enumeration AD via pcommand prompt
+          net user /domain
+            affiche les users AD
+          net user zoe.marshall /domain
+            affiche les infos d'un user AD
+          net group /domain
+            affiche les groupes AD
+          net group "Tier 1 Admins" /domain
+            affiche les users dans un groupe AD
+          net accounts /domain
+            affiche la startegie de mot de passe
+
+    Enumeration via Powershell
+          Get-ADUser -Identity gordon.stevens -Server za.tryhackme.com -Properties *
+          Get-ADUser -Filter 'Name -like "*stevens"' -Server za.tryhackme.com | Format-Table Name,SamAccountName -A
+          Get-ADGroup -Identity Administrators -Server za.tryhackme.com
+          Get-ADGroupMember -Identity Administrators -Server za.tryhackme.com
+          PS C:\> $ChangeDate = New-Object DateTime(2022, 02, 28, 12, 00, 00)
+          PS C:\> Get-ADObject -Filter 'whenChanged -gt $ChangeDate' -includeDeletedObjects -Server za.tryhackme.com  
+          Get-ADDomain -Server za.tryhackme.com
+          Set-ADAccountPassword -Identity gordon.stevens -Server za.tryhackme.com -OldPassword (ConvertTo-SecureString -AsPlaintext "old" -force) -NewPassword (ConvertTo-SecureString -AsPlainText "new" -Force)
+
+    Bypass RSAT
+          https://notes.benheater.com/books/active-directory/page/powershell-ad-module-on-any-domain-host-as-any-user?ref=benheater.com
+
+    Emplacement des objets AD supprimés 
+          CN=Deleted Objects,DC=za,DC=tryhackme,DC=com
 
 #[BUFFER OVERFLOW]
 
@@ -524,6 +583,10 @@
 
     xfreerdp /u:admin /p:password /cert:ignore /v:MACHINE_IP /workarea
       Connection RDP via linux
+
+    xfreerdp /u:danny.goddard /p:Implementing1995 /v:10.200.58.248 +clipboard
+
+    ssh za.tryhackme.com\\<AD Username>@thmjmp1.za.tryhackme.com
 
 #[SITES UTILES]
     
