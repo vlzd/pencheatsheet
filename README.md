@@ -135,6 +135,9 @@
       
     -dirb http:// 
       juste pour indexer les repertoires
+
+    -dirb http:// -X .txt
+      pour toruver les fichiers .txt
       
     -nikto -host http://192.168..
       recherche de repertoires
