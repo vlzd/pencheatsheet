@@ -459,6 +459,10 @@
           smbclient //10.10.186.19/anonymous
 
     Bloodhound
+          SharpHound.exe --CollectionMethods All --Domain za.tryhackme.com --ExcludeDCs (depuis la machine cliente pour alimenter bloodhound)
+          neo4j console start (lance noe4j)
+          bloodhound --no-sandbox ( dans un autre terminal)
+
           https://www.kali.org/tools/bloodhound/
           https://github.com/dirkjanm/BloodHound.py/tree/master
 
