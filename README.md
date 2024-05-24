@@ -129,7 +129,7 @@
         
 ##[CRAWLING]    
 
-    -gobuster
+    -gobuster dir -u http://10.10.162.81 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
       premiere indexation de repertoires
       cheatsheet = https://linuxcscom.wordpress.com/gobuster/
       
@@ -643,6 +643,9 @@
 
     Download en powershell via certutil
       certutil.exe -urlcache -split -f http://
+
+    Download en powershell via Invoke-WebRequest
+      Invoke-WebRequest $myDownloadUrl -OutFile c:\file.ext
 
    
 #[HASH / DEHASH / DECODE]
