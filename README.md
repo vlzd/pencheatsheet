@@ -596,6 +596,19 @@
 
     ssh za.tryhackme.com\\<AD Username>@thmjmp1.za.tryhackme.com
 
+    frackczip https://www.kali.org/tools/fcrackzip/
+      pour cracker mdp des . zip
+#[HASH / DEHASH / DECODE]
+
+    john --format=NT hash(hash est le nom du fichier)
+      decoder hash NT / NTLM
+
+    https://www.kali.org/tools/fcrackzip/
+      cracker les .zip
+
+    Cyberchef https://gchq.github.io/CyberChef/
+      swiss tool pour encoder decoder
+    
 #[SITES UTILES]
     
     Wordpress sécurisation:
