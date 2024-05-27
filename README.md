@@ -698,4 +698,6 @@ EXAM:
 
 https://medium.com/@adhikari_sridhar/blueprint-thm-walkthrough-a24aa795818e
 
+https://olivierkonate.medium.com/attacktive-directory-tryhackme-writeup-d74dfe07ae
+
 
