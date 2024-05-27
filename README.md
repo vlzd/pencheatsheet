@@ -702,3 +702,7 @@ https://olivierkonate.medium.com/attacktive-directory-tryhackme-writeup-d74dfe07
 
 https://github.com/ropnop/kerbrute/releases
 
+https://systemweakness.com/attacktive-directory-tryhackme-90465c2d48ea
+
+https://book.hacktricks.xyz/network-services-pentesting/pentesting-kerberos-88
+
