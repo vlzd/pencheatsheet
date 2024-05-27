@@ -694,3 +694,8 @@
     https://adepts.of0x.cc/shadowmove-hijack-socket/
 
 
+EXAM:
+
+https://medium.com/@adhikari_sridhar/blueprint-thm-walkthrough-a24aa795818e
+
+
